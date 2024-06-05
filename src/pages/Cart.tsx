@@ -44,10 +44,9 @@ const Cart = () => {
     const { token: cancelToken, cancel } = axios.CancelToken.source();
     const timeoutId = setTimeout(() => {
       axios
-        .get(
-          `${server}/api/v1/payment/discount?coupon=${couponCode}`,
-          cancelToken
-        )
+        .get(`${server}/api/v1/payment/discount?coupon=${couponCode}`, {
+          cancelToken,
+        })
         .then((res) => {
           console.log(res.data);
           dispatch(discountApplied(res.data.discount));
