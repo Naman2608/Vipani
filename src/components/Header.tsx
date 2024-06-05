@@ -57,7 +57,9 @@ const Header = ({ user }: PropsType) => {
           </button>
           <dialog open={isOpen}>
             <div>
-              {user.role === "admin" && <Link to="/admin">Admin</Link>}
+              {user.role === "admin" && (
+                <Link to="/admin/dashboard">Admin</Link>
+              )}
               <Link to="/orders">Orders</Link>
               <button onClick={logouthandler}>
                 <FaSignInAlt />
