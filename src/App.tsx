@@ -50,7 +50,7 @@ const App = () => {
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log("Logged In");
+        // console.log("Logged In");
         const data = await getUser(user.uid);
         dispatch(userExist(data.user));
       } else {

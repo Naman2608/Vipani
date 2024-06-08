@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { FaSearch, FaShoppingBag, FaSignInAlt, FaUser } from "react-icons/fa";
+import {
+  FaSearch,
+  FaShoppingBag,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaUser,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { User } from "../types/types";
 import { signOut } from "firebase/auth";
@@ -30,6 +36,8 @@ const Header = ({ user }: PropsType) => {
       >
         Home
       </Link>
+      {user?.role === "admin" && <Link to="/admin/dashboard">Admin</Link>}
+      <Link to="/orders">Orders</Link>
       <Link
         onClick={() => {
           setIsOpen(false);
@@ -46,32 +54,37 @@ const Header = ({ user }: PropsType) => {
       >
         <FaShoppingBag />
       </Link>
-      {user?._id ? (
-        <>
-          <button
-            onClick={() => {
-              setIsOpen((prev) => !prev);
-            }}
-          >
-            <FaUser />
-          </button>
-          <dialog open={isOpen}>
-            <div>
-              {user.role === "admin" && (
-                <Link to="/admin/dashboard">Admin</Link>
-              )}
-              <Link to="/orders">Orders</Link>
+      <div className="more-options">
+        {user?._id ? (
+          <>
+            <button
+              onClick={() => {
+                setIsOpen((prev) => !prev);
+              }}
+            >
+              {/* <FaUser /> */}
               <button onClick={logouthandler}>
-                <FaSignInAlt />
+                <FaSignOutAlt />
               </button>
-            </div>
-          </dialog>
-        </>
-      ) : (
-        <Link to={"/login"}>
-          <FaSignInAlt />
-        </Link>
-      )}
+            </button>
+            {/* <dialog open={isOpen}>
+              <div>
+                {user.role === "admin" && (
+                  <Link to="/admin/dashboard">Admin</Link>
+                )}
+                <Link to="/orders">Orders</Link>
+                <button onClick={logouthandler}>
+                  <FaSignInAlt />
+                </button>
+              </div>
+            </dialog> */}
+          </>
+        ) : (
+          <Link to={"/login"}>
+            <FaSignInAlt />
+          </Link>
+        )}
+      </div>
     </nav>
   );
 };

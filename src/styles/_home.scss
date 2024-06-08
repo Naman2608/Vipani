@@ -4,6 +4,7 @@
     flex-direction:  column;
     height: calc(100vh - 4rem);
     width: 100%;
+    font-weight:bold;
 
     > section{
         width: 100%;
@@ -29,29 +30,49 @@
         }
     }
 }
-.product-card{
+@media (max-width: 450px) {
+    .home {
+        font-size: large;
+       
+        >section{
+            height: 8rem;
+        }
+        >h1{
+           font-size: medium;
+           font-weight: bold;
+            margin-top: 3rem;
+            @include flex(row, space-between, center);
+        }
+    }
+}
+
+
+.product-card {
     width: 18rem;
     height: 25rem;
     padding: 1rem;
     flex: none;
-    @include flex(column, flex-start, center , 4px);
+
+    @include flex(column, flex-start, center, 4px);
     position: relative;
     background-color: white;
 
-    &:hover > div{
+    &:hover>div {
         opacity: 1;
     }
-    img{
+
+    img {
         @include square(calc(18rem - 3rem));
-        object-fit : cover;
-        margin : 1rem;
+        object-fit: cover;
+        margin: 1rem;
     }
 
-    span{
+    span {
         font-weight: 700;
         font-size: 1.1rem;
     }
-    >div{
+
+    >div {
         opacity: 0;
         position: absolute;
         @include square(100%);
@@ -59,17 +80,19 @@
         left: 0;
         background-color: #0000006b;
         @include flex;
-        button{
+
+        button {
             @include flex;
             @include square(3rem);
-            border-radius : 100%;
+            border-radius: 100%;
             border: none;
             background-color: $color3;
             cursor: pointer;
             color: $color1;
             font-size: 1.1rem;
-            transition: all 0,3s;
-            &:hover{
+            transition: all 0, 3s;
+
+            &:hover {
                 rotate: 20deg;
             }
         }

@@ -4,14 +4,18 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { auth } from "../Firebase";
 import { GoogleAuthProvider } from "firebase/auth";
-import { useLoginMutation } from "../redux/api/userAPI";
+import { getUser, useLoginMutation } from "../redux/api/userAPI";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 import { MessageResponse } from "../types/api-types";
+import { useDispatch } from "react-redux";
+import { userExist, userNotExist } from "../redux/reducer/userReducer";
 
 const Login = () => {
   const [gender, setGender] = useState("");
   const [date, setDate] = useState("");
   const [login] = useLoginMutation();
+  const dispatch = useDispatch();
+
   const loginHandler = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -29,12 +33,15 @@ const Login = () => {
 
       if ("data" in res) {
         toast.success(res.data?.message as string);
+        const data = await getUser(user.uid);
+        dispatch(userExist(data.user));
       } else {
         const error = res.error as FetchBaseQueryError;
         const message = error.data as MessageResponse;
         toast.error(message.message);
+        dispatch(userNotExist());
       }
-      console.log(user);
+      // console.log(user);
     } catch (error) {
       toast.error("Sign in Failed");
     }

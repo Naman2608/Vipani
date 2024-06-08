@@ -35,7 +35,7 @@ export const userAPI = createApi({
     }),
   }),
 });
-console.log(userAPI);
+// console.log(userAPI);
 
 export const getUser = async (id: string) => {
   // eslint-disable-next-line no-useless-catch

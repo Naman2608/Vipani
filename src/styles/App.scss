@@ -52,6 +52,7 @@ $color3: rgb(0, 104, 136);
 
 .header{
     @include flex(row,flex-end,stretch,1.2rem);
+    font-weight: bold;
     padding: 1rem;
     a{
         color: $color2;
