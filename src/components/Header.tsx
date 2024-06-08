@@ -1,10 +1,9 @@
-import { useState } from "react";
 import {
   FaSearch,
   FaShoppingBag,
   FaSignInAlt,
   FaSignOutAlt,
-  FaUser,
+  // FaUser,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { User } from "../types/types";
@@ -16,12 +15,12 @@ interface PropsType {
   user: User | null;
 }
 const Header = ({ user }: PropsType) => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const logouthandler = async () => {
     try {
       await signOut(auth);
       toast.success("Sign Out Successfully");
-      setIsOpen(false);
+      // setIsOpen(false);
     } catch (error) {
       toast.success("Sign Out Failed");
     }
@@ -30,7 +29,7 @@ const Header = ({ user }: PropsType) => {
     <nav className="header">
       <Link
         onClick={() => {
-          setIsOpen(false);
+          // setIsOpen(false);
         }}
         to={"/"}
       >
@@ -40,7 +39,7 @@ const Header = ({ user }: PropsType) => {
       <Link to="/orders">Orders</Link>
       <Link
         onClick={() => {
-          setIsOpen(false);
+          // setIsOpen(false);
         }}
         to={"/search"}
       >
@@ -48,7 +47,7 @@ const Header = ({ user }: PropsType) => {
       </Link>
       <Link
         onClick={() => {
-          setIsOpen(false);
+          // setIsOpen(false);
         }}
         to={"/cart"}
       >
@@ -59,7 +58,7 @@ const Header = ({ user }: PropsType) => {
           <>
             <button
               onClick={() => {
-                setIsOpen((prev) => !prev);
+                // setIsOpen((prev) => !prev);
               }}
             >
               {/* <FaUser /> */}
